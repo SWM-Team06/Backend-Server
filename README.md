@@ -59,16 +59,30 @@
 
 ##### 📌 Server Response
 ``` json
-{
-    "status": 200,
-    "success": true,
-    "message": "Footprint 조회 성공",
-    "data": {
-        "messages": [
-            "Javascript 4차 세미나 홧팅!",
-            "안녕하세요~~"
-        ]
-    }
+{	
+  "status": 200,
+  "success": true,
+  "data": {
+    "team_id": 6,
+    "team_name": "somang",
+    "project_name": "프로젝트 진행상항 공유 플랫폼",
+    "description": "소마 활동을 기록할 수 있는 플랫폼 입니다~!",
+    "profil_url": "https://googlecloud.com/...",
+    "posts": [
+      {
+        "post_id": 38,
+        "img_url": "https://googlecloud.com/...",
+      },
+      {
+        "post_id": 21,
+        "img_url": "https://googlecloud.com/…",
+      },
+      {
+        "post_id": 2,
+        "img_url": "https://googlecloud.com/…",
+      }
+    ]
+  }
 }
 ```
 
