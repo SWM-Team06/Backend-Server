@@ -93,9 +93,21 @@
 ##### 📌 Server Response
 ``` json
 {
-    "status": 200,
-    "success": true,
-    "message": "메시지 전송 성공"
+  "status": 200,
+  "success": true,
+  "data": {
+    "detail": {
+        
+        "post_id": 42,
+        "project_name": "걸어다니는 비행기",
+        "team_name": "비행비행",
+        "img_url": "https://googlecloud.com/...",
+        "like_count": 31,
+        "content": "1주차에는비행기가걸어다녀요",
+        "uploded_at" : "2022-06-12 08:55:23"
+        
+    }
+  }
 }
 ```
 
