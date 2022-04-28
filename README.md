@@ -26,27 +26,30 @@
     "posts": [
       {
         "post_id": 42,
-		"team_name": "...",
+	"team_name": "...",
         "profile_url": "https://googlecloud.com/...",
         "img_url": "https://googlecloud.com/...",
         "like_count": 31,
-        "content": "프로젝트 주제 선정 완료!!!"
+        "content": "프로젝트 주제 선정 완료!!!",
+	"liked": true,
       },
       {
         "post_id": 38,
-		"team_name": "...",
+	"team_name": "...",
         "profile_url": "https://googlecloud.com/...",
         "img_url": "https://googlecloud.com/…",
         "like_count": 21,
         "content": "비행기 날개 조립 완료~~"
+	"liked": false,
       },
       {
         "post_id": 21,
-		"team_name": "...",
+	"team_name": "...",
         "profile_url": "https://googlecloud.com/…",
         "img_url": "https://googlecloud.com/…",
         "like_count": 11,
         "content": "팀빌딩 해버렸당"
+	"liked": true,
       }
     ]
   }
@@ -97,15 +100,14 @@
   "success": true,
   "data": {
     "detail": {
-        
         "post_id": 42,
         "project_name": "걸어다니는 비행기",
         "team_name": "비행비행",
         "img_url": "https://googlecloud.com/...",
         "like_count": 31,
         "content": "1주차에는비행기가걸어다녀요",
-        "uploded_at" : "2022-06-12 08:55:23"
-        
+        "uploded_at" : "2022-06-12 08:55:23",
+	"liked": true,
     }
   }
 }
