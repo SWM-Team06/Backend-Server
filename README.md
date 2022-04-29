@@ -93,7 +93,7 @@
     "team_name": "somang",
     "project_name": "프로젝트 진행상항 공유 플랫폼",
     "description": "소마 활동을 기록할 수 있는 플랫폼 입니다~!",
-    "profil_url": "https://googlecloud.com/...",
+    "profile_url": "https://googlecloud.com/...",
     "posts": [
       {
         "post_id": 38,
