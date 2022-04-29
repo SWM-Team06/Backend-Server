@@ -8,10 +8,33 @@
 
 ### 🌸 Overview
 |HTTP METHOD|End Point|Description|
-|:------:|---|---|
-| GET | /feed | 피드 조회 |
-| GET | /mypage | 마이 페이지 조회 |
-| GET | /detail/:post_id | 게시글 상세 페이지 |
+|:------:|:---:|:---:|
+| POST | /account/user | 회원가입 |
+| GET | /post/feed | 피드 조회 |
+| GET | /post/mypage | 마이페이지 조회 |
+| GET | /post/detail/:post_id | 게시글 상세 페이지 |
+
+---
+
+#### 🧡 회원가입
+
+##### 📌 Request Body
+``` json
+{
+    "team_name": "team07",
+    "project_name": "team07-project",
+    "id": "team07",
+    "pw": "1234"
+}
+```
+
+##### 📌 Server Response
+``` json
+{
+    "success": 200,
+    "message": "회원가입 성공"
+}
+```
 
 ---
 
