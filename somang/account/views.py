@@ -17,7 +17,8 @@ def user_POST(request):
             hashed_pw = hashlib.sha256(str(new_pw).encode()).hexdigest()
         except:
             return JsonResponse({
-                'success': 400,
+                'status': 400,
+                'success': False,
                 'message': '필요한 값이 전달되지 않았습니다'
             })
 
@@ -25,12 +26,14 @@ def user_POST(request):
                             description=' ', account_id=new_id, account_pw=hashed_pw, profile_url=' ')
 
         return JsonResponse({
-            'success': 200,
+            'status': 200,
+            'success': True,
             'message': '회원가입 성공'
         })
     except:
         return JsonResponse({
-            'success': 500,
+            'status': 500,
+            'success': False,
             'message': 'Internal Server Error'
         })
 
@@ -46,7 +49,8 @@ def login_POST(request):
             hashed_pw = hashlib.sha256(str(input_pw).encode()).hexdigest()
         except:
             return JsonResponse({
-                'success': 400,
+                'status': 400,
+                'success': False,
                 'message': '필요한 값이 전달되지 않았습니다'
             })
 
@@ -55,12 +59,14 @@ def login_POST(request):
 
         if (len(login_team) != 1):
             return JsonResponse({
-                'success': 400,
+                'status': 400,
+                'success': False,
                 'message': '아이디 또는 비밀번호가 일치하지 않습니다'
             })
 
         return JsonResponse({
-            'success': 200,
+            'status': 200,
+            'success': True,
             'message': '로그인 성공',
             'data': {
                 'token': login_team[0].account_id + '/' + login_team[0].account_pw
@@ -68,6 +74,7 @@ def login_POST(request):
         })
     except:
         return JsonResponse({
-            'success': 500,
+            'status': 500,
+            'success': False,
             'message': 'Internal Server Error'
         })
