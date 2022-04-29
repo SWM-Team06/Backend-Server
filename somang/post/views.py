@@ -7,7 +7,7 @@ from django.http import JsonResponse
 def feed_GET(request):
     try:
         try:
-            hashed_pw = request.GET['token']
+            tokens = request.GET['token'].split('/')
         except:
             return JsonResponse({
                 'status': 400,
@@ -15,7 +15,8 @@ def feed_GET(request):
                 'message': '잘못된 접근입니다'
             })
         try:
-            login_user = Team.objects.get(account_pw=hashed_pw)
+            login_user = Team.objects.get(
+                account_id=tokens[0], account_pw=tokens[1])
         except:
             return JsonResponse({
                 'status': 400,
