@@ -1,5 +1,4 @@
 from account.models import Team
-from post.models import Post
 from django.http import JsonResponse
 import hashlib
 import json
