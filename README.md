@@ -33,7 +33,7 @@ http://127.0.0.1:8000
 ``` json
 {
     "status": 200,
-    "success": True,
+    "success": true,
     "message": "회원가입 성공"
 }
 ```
@@ -54,7 +54,7 @@ http://127.0.0.1:8000
 ``` json
 {
     "status": 200,
-    "success": True,
+    "success": true,
     "message": "로그인 성공",
     "data": {
         "token": "team06/03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"
