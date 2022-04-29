@@ -3,7 +3,7 @@
 
 ### 🚨 Local Server URL (Server Host) 🚨
 ```text
-
+http://127.0.0.1:8000
 ```
 
 ### 🌸 Overview
@@ -22,9 +22,9 @@
 ##### 📌 Request Body
 ``` json
 {
-    "team_name": "team07",
-    "project_name": "team07-project",
-    "id": "team07",
+    "team_name": "team06",
+    "project_name": "Flying Object Detector",
+    "id": "team06",
     "pw": "1234"
 }
 ```
