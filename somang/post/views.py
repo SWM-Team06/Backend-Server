@@ -50,7 +50,7 @@ def feed_GET(request):
             'success': True,
             'message': '피드 불러오기 성공',
             'data': {
-                'posts': posts
+                'posts': sorted(posts, key=lambda x: x['post_id'], reverse=True)
             }
         })
     except:
