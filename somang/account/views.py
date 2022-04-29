@@ -60,7 +60,7 @@ def login_POST(request):
                 'message': '아이디 또는 비밀번호가 일치하지 않습니다'
             })
 
-        request.session['team_id'] = login_team[0].id
+        request.session['team_id'] = login_team[0].team_id
 
         return JsonResponse({
             'success': 200,
