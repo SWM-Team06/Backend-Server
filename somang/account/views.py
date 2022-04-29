@@ -15,7 +15,7 @@ def user_POST(request):
             project_name = body['project_name']
             new_id = body['id']
             new_pw = body['pw']
-            # hashed_pw = hashlib.sha256(str(new_pw).encode()).hexdigest()
+            hashed_pw = hashlib.sha256(str(new_pw).encode()).hexdigest()
         except:
             return JsonResponse({
                 'success': 400,
@@ -23,7 +23,7 @@ def user_POST(request):
             })
 
         Team.objects.create(team_name=team_name, project_name=project_name,
-                            description=' ', account_id=new_id, account_pw=new_pw, profile_url=' ')
+                            description=' ', account_id=new_id, account_pw=hashed_pw, profile_url=' ')
 
         return JsonResponse({
             'success': 200,
