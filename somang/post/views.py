@@ -1,3 +1,60 @@
-from django.shortcuts import render
+from account.models import Team
+from post.models import Post
+from post.models import Like
+from django.http import JsonResponse
 
-# Create your views here.
+
+def feed_GET(request):
+    try:
+        try:
+            hashed_pw = request.GET['token']
+        except:
+            return JsonResponse({
+                'status': 400,
+                'success': False,
+                'message': '잘못된 접근입니다'
+            })
+        try:
+            login_user = Team.objects.get(account_pw=hashed_pw)
+        except:
+            return JsonResponse({
+                'status': 400,
+                'success': False,
+                'message': '올바르지 않은 token입니다'
+            })
+
+        allPost = Post.objects.filter()
+
+        posts = []
+
+        for post in allPost:
+            creator = post.team_id
+            likes = Like.objects.filter(post_id=post.post_id)
+            liked = Like.objects.filter(
+                team_id=login_user.team_id, post_id=post.post_id)
+
+            post_obj = {
+                'post_id': post.post_id,
+                'team_name': creator.team_name,
+                'profile_url': creator.profile_url,
+                'img_url': post.img_url,
+                'like_count': len(likes),
+                'content': post.content,
+                'liked': True if len(liked) == 1 else False
+            }
+            posts.append(post_obj)
+
+        return JsonResponse({
+            'status': 200,
+            'success': True,
+            'message': '피드 불러오기 성공',
+            'data': {
+                'posts': posts
+            }
+        })
+    except:
+        return JsonResponse({
+            'status': 500,
+            'success': False,
+            'message': 'Internal Server Error'
+        })
