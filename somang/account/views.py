@@ -81,51 +81,50 @@ def login_POST(request):
     
     
 def mypage_GET(request):
-  try:
     try:
-      tokens = request.GET['token'].split('/')
+        try:
+            tokens = request.GET['token'].split('/')
+        except:
+            return JsonResponse({
+                'status': 400,
+                'success': False,
+                'message': '잘못된 접근입니다'
+            })
+
+        try:
+            login_user = Team.objects.get(account_id=tokens[0], account_pw=tokens[1])
+        except:
+            return JsonResponse({
+                'status': 400,
+                'success': False,
+                'message': '올바르지 않은 token입니다'
+            })
+
+        posts = Post.objects.filter(team_id = login_user.team_id).order_by('-uploaded_at')
+        dictPosts = []
+
+        for i in range(len(posts)):
+            temp = {}
+            temp["post_id"] = posts[i].post_id
+            temp["img_url"] = posts[i].img_url
+            dictPosts.append(temp)
+
+        return JsonResponse({
+            "status": 200,
+            "success": True,
+            "data": {
+                "team_id": login_user.team_id,
+                "team_name": login_user.team_name,
+                "project_name": login_user.project_name,
+                "description": login_user.description,
+                "profile_url": login_user.profile_url,
+                "posts": dictPosts
+            }
+        })
+
     except:
-      return JsonResponse({
-        'status': 400,
-        'success': False,
-        'message': '잘못된 접근입니다'
-      })
-
-    try:
-      login_user = Team.objects.get(
-        account_id=tokens[0], account_pw=tokens[1])
-    except:
-      return JsonResponse({
-        'status': 400,
-        'success': False,
-        'message': '올바르지 않은 token입니다'
-      })
-
-    posts = Post.objects.filter(team_id = login_user.team_id).order_by('-uploaded_at')
-    dictPosts = []
-
-    for i in range(len(posts)):
-      temp = {}
-      temp["post_id"] = posts[i].post_id
-      temp["img_url"] = posts[i].img_url
-      dictPosts.append(temp)
-
-    return JsonResponse({
-      "status": 200,
-      "success": True,
-      "data": {
-        "team_id": login_user.team_id,
-        "team_name": login_user.team_name,
-        "project_name": login_user.project_name,
-        "description": login_user.description,
-        "profile_url": login_user.profile_url,
-        "posts": dictPosts
-      }
-    })
-
-  except:
-    return JsonResponse({
-      'status': 500,
-      'success': False,
-      'message': 'Internal Server Error'
-    })
+        return JsonResponse({
+            'status': 500,
+            'success': False,
+            'message': 'Internal Server Error'
+        })
