@@ -12,7 +12,7 @@ http://127.0.0.1:8000
 | POST | /account/user | 회원가입 |
 | POST | /account/login | 로그인 |
 | GET | /post/feed | 피드 조회 |
-| GET | /post/mypage | 마이페이지 조회 |
+| GET | /account/mypage | 마이페이지 조회 |
 | GET | /post/detail/:post_id | 게시글 상세 페이지 |
 
 ---
