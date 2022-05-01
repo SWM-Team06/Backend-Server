@@ -61,32 +61,38 @@ def feed_GET(request):
         })
 
 
-def post_details(request,id):
+def post_details(request, id):
     try:
-
-        post = Post.objects.get(post_id=id)
-        team = Team.objects.get(team_id=post.team_id)
+        try:
+            post = Post.objects.get(post_id=id)
+        except:
+            return JsonResponse({
+                'status': 400,
+                'success': False,
+                'message': '유효하지 않는 post id 입니다'
+            })
+        team = post.team_id
         likes = Like.objects.filter(post_id=post.post_id)
         liked = Like.objects.filter(team_id=post.team_id, post_id=post.post_id)
-
 
         return JsonResponse({
             'status': 200,
             'success': True,
-            'message': '디테일 접속',
+            'message': '게시글 상세정보 불러오기 성공',
             'data': {
-                "post_id": post.post_id ,
-                "project_name": team.team_id ,
+                "post_id": post.post_id,
+                "project_name": team.team_id,
                 "team_name": team.team_name,
                 "img_url": post.img_url,
                 "like_count": len(likes),
-                "content": post.post.content,
-                "uploded_at": post.post.uploaded_at ,
+                "content": post.content,
+                "uploded_at": post.uploaded_at,
                 "liked": True if len(liked) == 1 else False,
             }
         })
 
-    except:
+    except Exception as e:
+        print(e)
         return JsonResponse({
             'status': 500,
             'success': False,
