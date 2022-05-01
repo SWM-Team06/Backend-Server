@@ -1,4 +1,5 @@
 from account.models import Team
+from post.models import Post
 from django.http import JsonResponse
 import hashlib
 import json
@@ -78,8 +79,8 @@ def login_POST(request):
             'success': False,
             'message': 'Internal Server Error'
         })
-    
-    
+
+
 def mypage_GET(request):
     try:
         try:
@@ -92,7 +93,8 @@ def mypage_GET(request):
             })
 
         try:
-            login_user = Team.objects.get(account_id=tokens[0], account_pw=tokens[1])
+            login_user = Team.objects.get(
+                account_id=tokens[0], account_pw=tokens[1])
         except:
             return JsonResponse({
                 'status': 400,
@@ -100,7 +102,8 @@ def mypage_GET(request):
                 'message': '올바르지 않은 token입니다'
             })
 
-        posts = Post.objects.filter(team_id = login_user.team_id).order_by('-uploaded_at')
+        posts = Post.objects.filter(
+            team_id=login_user.team_id).order_by('-uploaded_at')
         dictPosts = []
 
         for i in range(len(posts)):
