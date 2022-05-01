@@ -84,7 +84,8 @@ def login_POST(request):
 def mypage_GET(request):
     try:
         try:
-            tokens = request.GET['token'].split('_')
+            # tokens = request.GET['token'].split('_')
+            tokens = ['reverseplane123', '1234asdf']
         except:
             return JsonResponse({
                 'status': 400,
