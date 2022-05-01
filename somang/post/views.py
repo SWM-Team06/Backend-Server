@@ -7,7 +7,7 @@ from django.http import JsonResponse
 def feed_GET(request):
     try:
         try:
-            tokens = request.GET['token'].split('/')
+            tokens = request.GET['token'].split('_')
         except:
             return JsonResponse({
                 'status': 400,

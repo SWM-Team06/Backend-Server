@@ -70,7 +70,7 @@ def login_POST(request):
             'success': True,
             'message': '로그인 성공',
             'data': {
-                'token': login_team[0].account_id + '/' + login_team[0].account_pw
+                'token': login_team[0].account_id + '_' + login_team[0].account_pw
             }
         })
     except:
@@ -84,7 +84,7 @@ def login_POST(request):
 def mypage_GET(request):
     try:
         try:
-            tokens = request.GET['token'].split('/')
+            tokens = request.GET['token'].split('_')
         except:
             return JsonResponse({
                 'status': 400,
